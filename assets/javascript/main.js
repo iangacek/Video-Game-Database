@@ -3,20 +3,25 @@ $(document).ready(function () {
     var search = null;
     var newSearch = function () {
         event.preventDefault();
-        search = $("#input").val().trim();
+        search = $("#game-search").val().trim();
         //localStorage.clear();
         //localStorage.setItem("searchlist", JSON.stringify(resultList));
-        $("#input").val("");
+        $("#game-search").val("");
     };
     var searchGame = function (term) {
         //need to change url
-        var queryURL = "https://api-endpoint.igdb.com/games/?search="+term;
+        var queryURL = "https://api-endpoint.igdb.com/games/?search=" + term;
         $.ajax({
             method: "GET",
             url: queryURL,
+            dataType: 'jsonp',
+            cors: true,
+            contentType: 'application/json',
+            secure: true,
             headers: {
-                "user-key":"3577d4e3a555ea221225af170191c8b8",
-                Accept:"application/json",
+                'Access-Control-Allow-Origin': '*',
+                "user-key": "3577d4e3a555ea221225af170191c8b8",
+                Accept: "application/json",
             },
         }).then(function (response) {
             if (response.data != null) {
@@ -54,8 +59,8 @@ $(document).ready(function () {
             };
         });
     }
-    $("#submit").on("click", function () {
-        if ($("#input").val() != "") {
+    $("#game-query").on("click", function () {
+        if ($("#game-search").val() != "") {
             newSearch();
             searchGame(search);
         };
