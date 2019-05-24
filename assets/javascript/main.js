@@ -10,14 +10,16 @@ $(document).ready(function () {
     };
     var searchGame = function (term) {
         //need to change url
-        //var key = "c3jwjWyqTWqKljMuLXLRmxYXuZfrT7iD";
-        //var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + term + "&api_key=" + key;
+        var queryURL = "https://api-endpoint.igdb.com/games/?search="+term;
         $.ajax({
             method: "GET",
             url: queryURL,
+            headers: {
+                "user-key":"3577d4e3a555ea221225af170191c8b8",
+                Accept:"application/json",
+            },
         }).then(function (response) {
             if (response.data != null) {
-                var results = response.data;
                 for (var i = 0; i < 10; i++) {
                     //this div containts everything
                     var itemDiv = $("<div>");
