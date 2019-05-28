@@ -10,17 +10,17 @@ $(document).ready(function () {
     };
     var searchGame = function (term) {
         //need to change url
-        var queryURL = "https://api-endpoint.igdb.com/games/?search=" + term;
+        var queryURL = " https://api-v3.igdb.com/games/?search=" + term;
         $.ajax({
-            method: "GET",
+            //method: "GET",
             url: queryURL,
             dataType: 'jsonp',
             cors: true,
-            contentType: 'application/json',
-            secure: true,
+            //contentType: 'application/json',
+            //secure: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                "user-key": "3577d4e3a555ea221225af170191c8b8",
+                "user-key": "ebb19141efb0e8e676f8098828e010bf",
                 Accept: "application/json",
             },
         }).then(function (response) {
