@@ -23,21 +23,22 @@ $(document).ready(function () {
                 api_key: "52e79fca4d325c1ee085a289f1703202d6089c8e",
                 query: term,
                 format: "jsonp",
+                //we can change searched item here
                 field_list: "name",
+                field_list: "deck",
+                field_list: "original_release_date",
+                field_list: "image",
                 resources: "game",
             },
         }).then(function (response) {
-
+            //test
             console.log("test success");
             console.log(response);
-        }
-
-        )
-
-
+            console.log(response.results[0]);
+        })
         // .then(function (response) {
-        //     if (response.data != null) {
-        //         for (var i = 0; i < 10; i++) {
+        //     if (response.results != null) {
+        //         for (var i = 0; i < response.results.length; i++) {
         //             //this div containts everything
         //             var itemDiv = $("<div>");
         //             itemDiv.addClass("itemId");
