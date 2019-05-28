@@ -1,3 +1,17 @@
+body {
+    background-color: #545E75;
+    color: white;
+}
+
 #searchBox {
     text-align: center;
+}
+
+#link-url {
+    color: #A4B1AA;
+}
+
+.btn-primary {
+    background-color: #212529;
+    border-color: #212529;
 }
