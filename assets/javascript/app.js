@@ -16,23 +16,19 @@ $(document).ready(function () {
         console.log(event);
         var game = $("#game-search").val().trim();
         console.log(game);
-      })
+    })
 
     var searchGame = function (term) {
         //need to change url
         var queryURL = "https://api-endpoint.igdb.com/games/?search=" + term;
         $.ajax({
-            method: "GET",
             url: queryURL,
-            dataType: 'jsonp',
-            cors: true,
-            contentType: 'application/json',
-            secure: true,
+            method: "GET",
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                "user-key": "3577d4e3a555ea221225af170191c8b8",
-                Accept: "application/json",
+                'Accept': 'application/json',
+                'user-key': "e6c34e7d53f0cca95d5ac8812e0d1ca7"
             },
+            data: "fields *; search " + term + "; limit 10;"
         }).then(function (response) {
             if (response.data != null) {
                 for (var i = 0; i < 10; i++) {
