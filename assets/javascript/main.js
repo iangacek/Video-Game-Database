@@ -25,53 +25,58 @@ $(document).ready(function () {
                 query: term,
                 format: "jsonp",
                 //we can change searched item here
-                field_list: "name",
-                field_list: "deck",
-                field_list: "original_release_date",
-                field_list: "image",
+                //field_list: "name, deck",
+                //field_list: "deck",
+                //field_list: "original_release_date",
+                //field_list: "image",
                 resources: "game",
             },
         }).then(function (response) {
             //test
             console.log("test success");
-            console.log(response);
             console.log(response.results[0]);
         })
-        // .then(function (response) {
-        //     if (response.results != null) {
-        //         for (var i = 0; i < response.results.length; i++) {
-        //             //this div containts everything
-        //             var itemDiv = $("<div>");
-        //             itemDiv.addClass("itemId");
-        //             itemDiv.attr("id", response.data[i].title);
-        //             //this div is image
-        //             var imageBody = $("<img>");
-        //             imageBody.addClass("imageBody");
-        //             imageBody.attr("id", term + i);
-        //             imageBody.attr("src", response.data[i].image);
-        //             var title = $("<div>");
-        //             title.addClass("title");
-        //             title.text(response.data[i].title);
-        //             var description = $("<div>");
-        //             description.addClass("description");
-        //             description.text();
-        //             var rating = $("<div>");
-        //             rating.addClass("rating");
-        //             rating.text(response.data[i].rating);
-        //             var price = $("<div>");
-        //             price.addClass("price");
-        //             price.text(response.data[i].price);
-        //             var linkVideo = $("<div>");
-        //             linkVideo.addClass("linkVideo");
-        //             linkVideo.text("link");
-        //             var linkAmz = $("<div>");
-        //             linkAmz.addClass("linkVideo");
-        //             linkAmz.text("link");
-        //             //gifDiv.append(t);
-        //             $("#resultList").append(gifDiv);
-        //         }
-        //     };
-        // });
+        .then(function (response) {
+            if (response.results != null) {
+                for (var i = 0; i < response.results.length; i++) {
+                    //this div containts everything
+                    var itemDiv = $("<div>");
+                    itemDiv.addClass("col-md-3");
+                    var itemResTable = $("<div>");
+                    itemDiv.addClass("table-responsive");
+                    itemDiv.append(itemResTable);
+                    var itemTable = $("<table>");
+                    itemResTable.append(itemTable);
+                    //itemDiv.attr("id", response.data[i].title);
+                    //this div is image
+                    // var imageBody = $("<img>");
+                    // imageBody.addClass("imageBody");
+                    // imageBody.attr("id", term + i);
+                    // imageBody.attr("src", response.data[i].image);
+                    var name = $("<div>");
+                    
+                    title.addClass("title");
+                    title.text(response.data[i].title);
+                    var description = $("<div>");
+                    description.addClass("description");
+                    description.text();
+                    var rating = $("<div>");
+                    rating.addClass("rating");
+                    rating.text(response.data[i].rating);
+                    var price = $("<div>");
+                    price.addClass("price");
+                    price.text(response.data[i].price);
+                    var linkVideo = $("<div>");
+                    linkVideo.addClass("linkVideo");
+                    linkVideo.text("link");
+                    var linkAmz = $("<div>");
+                    linkAmz.addClass("linkVideo");
+                    linkAmz.text("link");
+                    //gifDiv.append(t);
+                    $("#resultList").append(gifDiv);
+                }
+            };
+        });
     }
     $("#game-query").on("click", function () {
         if ($("#game-search").val() != "") {
