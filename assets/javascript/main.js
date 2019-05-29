@@ -105,14 +105,13 @@ $(document).ready(function () {
         });
     }
 
-    // This code currently does not work
+    //Twitch API call for top games
     $.ajax({
         url: "https://api.twitch.tv/kraken/games/top",
         method: "GET",
-        // dataType: "kraken",
-        // headers: {
-        //     "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
-        // },
+        headers: {
+            "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
+        },
     }).then(function(response) {
         console.log(response.top);
     });
