@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    //var favList = [];
     var search = null;
     var newSearch = function () {
         event.preventDefault();
@@ -37,7 +36,7 @@ $(document).ready(function () {
                     //this div containts everything
                     //
                     var itemDiv = $("<div>");
-                    itemDiv.addClass("col-md-3");
+                    itemDiv.addClass("col-md-6");
                     //
                     var itemResTable = $("<div>");
                     itemResTable.addClass("table-responsive");
@@ -100,7 +99,6 @@ $(document).ready(function () {
                     itemTable.append(itemBody);
                     $("#game-container").append(itemDiv);
                     console.log("item added");
-
                 }
             };
         });
