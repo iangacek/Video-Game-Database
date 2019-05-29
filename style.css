@@ -1,3 +1,26 @@
+body {
+    background-color: #545E75;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #searchBox {
     text-align: center;
 }
+
+#link-url {
+    color: #A4B1AA;
+}
+
+.btn-primary {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+input:invalid {
+    border: 2px solid red;
+  }
+  
+  input:valid {
+    border: 2px solid black;
+  }
