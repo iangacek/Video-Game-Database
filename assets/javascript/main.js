@@ -39,7 +39,7 @@ $(document).ready(function () {
         // })
         .then(function (response) {
             if (response.results != null) {
-                console.log(response.results.length);
+                console.log(response.results[0]);
                 for (var i = 0; i < response.results.length ; i++) {
                     //this div containts everything
                     //
@@ -91,9 +91,12 @@ $(document).ready(function () {
                     var info1 =$("<th>");
                     info1.attr("scope", "row");
                     info1.text("img");
-                    var info2 =$("<th>");
+                    var info2 = $("<th>");
                     info2.attr("scope", "row");
-                    info2.text("img here");
+                    var image = $("<img>")
+                    image.attr("src", response.results[i].image.original_url);
+                    image.css("max-width", "100%");
+                    info2.append(image);
                     tr3.append(info1);
                     tr3.append(info2);
                     itemBody.append(tr1);
