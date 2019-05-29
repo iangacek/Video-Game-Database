@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log("test");
 
         $.ajax({
-            url: "http://api.giantbomb.com/search/",
+            url: "https://api.giantbomb.com/search/",
             dataType: "jsonp",
             jsonp: "json_callback",
             data: {
