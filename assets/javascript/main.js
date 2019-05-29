@@ -30,79 +30,79 @@ $(document).ready(function () {
                 resources: "game",
             },
         })
-        .then(function (response) {
-            if (response.results != null) {
-                console.log(response.results[0]);
-                for (var i = 0; i < response.results.length ; i++) {
-                    //this div containts everything
-                    //
-                    var itemDiv = $("<div>");
-                    itemDiv.addClass("col-md-6");
-                    //
-                    var itemResTable = $("<div>");
-                    itemResTable.addClass("table-responsive");
-                    itemDiv.append(itemResTable);
-                    //
-                    var itemTable = $("<table>");
-                    itemTable.addClass("table");
-                    itemResTable.append(itemTable);
-                    //
-                    var itemHead = $("<thead>");
-                    itemHead.addClass("thead-dark");
-                    //
-                    var tr0 = $("<tr>");
-                    var info1 =$("<th>");
-                    info1.attr("scope", "col");
-                    info1.text("Title");
-                    var info2 =$("<th>");
-                    info2.attr("scope", "col");
-                    info2.text(response.results[i].name);
-                    tr0.append(info1);
-                    tr0.append(info2);
-                    itemHead.append(tr0);
-                    itemTable.append(itemHead);
-                    var itemBody = $("<tbody>");
-                    var tr1 = $("<tr>");
-                    var info1 =$("<th>");
-                    info1.attr("scope", "row");
-                    info1.text("Abstract");
-                    var info2 =$("<th>");
-                    info2.attr("scope", "row");
-                    info2.text(response.results[i].deck);
-                    tr1.append(info1);
-                    tr1.append(info2);
-                    var tr2 = $("<tr>");
-                    var info1 =$("<th>");
-                    info1.attr("scope", "row");
-                    info1.text("Release Date");
-                    var info2 =$("<th>");
-                    info2.attr("scope", "row");
-                    var date = response.results[i].original_release_date;
-                    date = date.split(' ')[0];
-                    info2.text(date);
-                    tr2.append(info1);
-                    tr2.append(info2);
-                    var tr3 = $("<tr>");
-                    var info1 =$("<th>");
-                    info1.attr("scope", "row");
-                    info1.text("img");
-                    var info2 = $("<th>");
-                    info2.attr("scope", "row");
-                    var image = $("<img>")
-                    image.attr("src", response.results[i].image.original_url);
-                    image.css("max-width", "100%");
-                    info2.append(image);
-                    tr3.append(info1);
-                    tr3.append(info2);
-                    itemBody.append(tr1);
-                    itemBody.append(tr2);
-                    itemBody.append(tr3);
-                    itemTable.append(itemBody);
-                    $("#game-container").append(itemDiv);
-                    console.log("item added");
-                }
-            };
-        });
+            .then(function (response) {
+                if (response.results != null) {
+                    console.log(response.results[0]);
+                    for (var i = 0; i < response.results.length; i++) {
+                        //this div containts everything
+                        //
+                        var itemDiv = $("<div>");
+                        itemDiv.addClass("col-md-6");
+                        //
+                        var itemResTable = $("<div>");
+                        itemResTable.addClass("table-responsive");
+                        itemDiv.append(itemResTable);
+                        //
+                        var itemTable = $("<table>");
+                        itemTable.addClass("table");
+                        itemResTable.append(itemTable);
+                        //
+                        var itemHead = $("<thead>");
+                        itemHead.addClass("thead-dark");
+                        //
+                        var tr0 = $("<tr>");
+                        var info1 = $("<th>");
+                        info1.attr("scope", "col");
+                        info1.text("Title");
+                        var info2 = $("<th>");
+                        info2.attr("scope", "col");
+                        info2.text(response.results[i].name);
+                        tr0.append(info1);
+                        tr0.append(info2);
+                        itemHead.append(tr0);
+                        itemTable.append(itemHead);
+                        var itemBody = $("<tbody>");
+                        var tr1 = $("<tr>");
+                        var info1 = $("<th>");
+                        info1.attr("scope", "row");
+                        info1.text("Abstract");
+                        var info2 = $("<th>");
+                        info2.attr("scope", "row");
+                        info2.text(response.results[i].deck);
+                        tr1.append(info1);
+                        tr1.append(info2);
+                        var tr2 = $("<tr>");
+                        var info1 = $("<th>");
+                        info1.attr("scope", "row");
+                        info1.text("Release Date");
+                        var info2 = $("<th>");
+                        info2.attr("scope", "row");
+                        var date = response.results[i].original_release_date;
+                        // date = date.split(' ')[0];
+                        info2.text(date);
+                        tr2.append(info1);
+                        tr2.append(info2);
+                        var tr3 = $("<tr>");
+                        var info1 = $("<th>");
+                        info1.attr("scope", "row");
+                        info1.text("img");
+                        var info2 = $("<th>");
+                        info2.attr("scope", "row");
+                        var image = $("<img>")
+                        image.attr("src", response.results[i].image.original_url);
+                        image.css("max-width", "100%");
+                        info2.append(image);
+                        tr3.append(info1);
+                        tr3.append(info2);
+                        itemBody.append(tr1);
+                        itemBody.append(tr2);
+                        itemBody.append(tr3);
+                        itemTable.append(itemBody);
+                        $("#game-container").append(itemDiv);
+                        console.log("item added");
+                    }
+                };
+            });
     }
 
     //Twitch API call for top games
@@ -112,7 +112,17 @@ $(document).ready(function () {
         headers: {
             "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
         },
-    }).then(function(response) {
+    }).then(function (response) {
+        for (var i = 0; i < response.top.length; i++) {
+            var imgDiv = $("<div>");
+            imgDiv.addClass("col-md-2");
+            var image = $("<img>");
+            image.attr("src", response.top[i].game.box.small);
+            console.log(response.top[i].game.box.small);
+            imgDiv.append(image);
+            $("#twitch-container").prepend(imgDiv);
+            console.log("item added");
+        }
         console.log(response.top);
     });
 
