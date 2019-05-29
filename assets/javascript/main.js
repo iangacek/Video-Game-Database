@@ -104,11 +104,11 @@ $(document).ready(function () {
         });
     }
     $("#game-query").on("click", function () {
+        $("#game-container").empty();
         if ($("#game-search").val() != "") {
             var a = $("#game-search").val();
             searchGame(a);
             newSearch();
-
         };
     });
 });
