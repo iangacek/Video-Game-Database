@@ -1,11 +1,8 @@
 $(document).ready(function () {
-    //var favList = [];
     var search = null;
     var newSearch = function () {
         event.preventDefault();
         search = $("#game-search").val().trim();
-        //localStorage.clear();
-        //localStorage.setItem("searchlist", JSON.stringify(resultList));
         $("#game-search").val("");
     };
     var searchGame = function (term) {
@@ -32,11 +29,6 @@ $(document).ready(function () {
                 resources: "game",
             },
         })
-        // .then(function (response) {
-        //     //test
-        //     console.log("test success");
-        //     console.log(response.results[0]);
-        // })
         .then(function (response) {
             if (response.results != null) {
                 console.log(response.results[0]);
@@ -44,7 +36,7 @@ $(document).ready(function () {
                     //this div containts everything
                     //
                     var itemDiv = $("<div>");
-                    itemDiv.addClass("col-md-3");
+                    itemDiv.addClass("col-md-6");
                     //
                     var itemResTable = $("<div>");
                     itemResTable.addClass("table-responsive");
@@ -107,45 +99,16 @@ $(document).ready(function () {
                     itemTable.append(itemBody);
                     $("#game-container").append(itemDiv);
                     console.log("item added");
-
-
-                    //itemDiv.attr("id", response.data[i].title);
-                    //this div is image
-                    // var imageBody = $("<img>");
-                    // imageBody.addClass("imageBody");
-                    // imageBody.attr("id", term + i);
-                    // imageBody.attr("src", response.data[i].image);
-                    // var name = $("<div>");
-                    
-                    // title.addClass("title");
-                    // title.text(response.data[i].title);
-                    // var description = $("<div>");
-                    // description.addClass("description");
-                    // description.text();
-                    // var rating = $("<div>");
-                    // rating.addClass("rating");
-                    // rating.text(response.data[i].rating);
-                    // var price = $("<div>");
-                    // price.addClass("price");
-                    // price.text(response.data[i].price);
-                    // var linkVideo = $("<div>");
-                    // linkVideo.addClass("linkVideo");
-                    // linkVideo.text("link");
-                    // var linkAmz = $("<div>");
-                    // linkAmz.addClass("linkVideo");
-                    // linkAmz.text("link");
-                    // //gifDiv.append(t);
-                    // $("#resultList").append(gifDiv);
                 }
             };
         });
     }
     $("#game-query").on("click", function () {
+        $("#game-container").empty();
         if ($("#game-search").val() != "") {
             var a = $("#game-search").val();
             searchGame(a);
             newSearch();
-
         };
     });
 });
