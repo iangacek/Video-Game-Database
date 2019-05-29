@@ -84,7 +84,9 @@ $(document).ready(function () {
                     info1.text("Release Date");
                     var info2 =$("<th>");
                     info2.attr("scope", "row");
-                    info2.text(response.results[i].original_release_date);
+                    var date = response.results[i].original_release_date;
+                    date = date.split(' ')[0];
+                    info2.text(date);
                     tr2.append(info1);
                     tr2.append(info2);
                     var tr3 = $("<tr>");
