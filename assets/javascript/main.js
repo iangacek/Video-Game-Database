@@ -13,6 +13,7 @@ $(document).ready(function () {
         console.log(queryURL);
         console.log("test");
 
+        // DO NOT TOUCH - Giantbomb Search Function
         $.ajax({
             url: "https://api.giantbomb.com/search/",
             dataType: "jsonp",
@@ -103,6 +104,19 @@ $(document).ready(function () {
             };
         });
     }
+
+    // This code currently does not work
+    $.ajax({
+        url: "https://api.twitch.tv/kraken/games/top",
+        method: "GET",
+        // dataType: "kraken",
+        // headers: {
+        //     "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
+        // },
+    }).then(function(response) {
+        console.log(response.top);
+    });
+
     $("#game-query").on("click", function () {
         $("#game-container").empty();
         if ($("#game-search").val() != "") {
