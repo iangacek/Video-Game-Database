@@ -117,8 +117,8 @@ $(document).ready(function () {
             var imgDiv = $("<div>");
             imgDiv.addClass("col-md-2");
             var image = $("<img>");
-            image.attr("src", response.top[i].game.box.small);
-            console.log(response.top[i].game.box.small);
+            image.attr("src", response.top[i].game.box.medium);
+            console.log(response.top[i].game.box.medium);
             imgDiv.append(image);
             $("#twitch-container").prepend(imgDiv);
             console.log("item added");
