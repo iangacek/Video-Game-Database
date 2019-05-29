@@ -9,12 +9,12 @@ $(document).ready(function () {
         //need to change url
 
         var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
-        var queryURL = "http://www.giantbomb.com/api/search?api_key=" + key + "&format=json&query=" + term + "&resources=game";
+        var queryURL = "https://www.giantbomb.com/api/search?api_key=" + key + "&format=json&query=" + term + "&resources=game";
         console.log(queryURL);
         console.log("test");
 
         $.ajax({
-            url: "http://api.giantbomb.com/search/",
+            url: "https://api.giantbomb.com/search/",
             dataType: "jsonp",
             jsonp: "json_callback",
             data: {
