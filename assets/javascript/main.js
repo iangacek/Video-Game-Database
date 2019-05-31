@@ -113,17 +113,15 @@ $(document).ready(function () {
             "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
         },
     }).then(function (response) {
-        for (var i = 0; i < response.top.length; i++) {
+        for (var i = 0; i < 6; i++) {
             var imgDiv = $("<div>");
             imgDiv.addClass("col-md-2");
             var image = $("<img>");
             image.attr("src", response.top[i].game.box.medium);
             console.log(response.top[i].game.box.medium);
             imgDiv.append(image);
-            $("#twitch-container").prepend(imgDiv);
-            console.log("item added");
+            $("#twitch-container").append(imgDiv);
         }
-        console.log(response.top);
     });
 
     $("#game-query").on("click", function () {
