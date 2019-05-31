@@ -78,14 +78,13 @@ $(document).ready(function () {
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var date = response.results[i].original_release_date;
-                        // date = date.split(' ')[0];
                         info2.text(date);
                         tr2.append(info1);
                         tr2.append(info2);
                         var tr3 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
-                        info1.text("img");
+                        info1.text("Game Art");
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var image = $("<img>")
