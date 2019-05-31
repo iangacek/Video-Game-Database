@@ -28,6 +28,10 @@ $(document).ready(function () {
                 //field_list: "image",
                 resources: "game",
             },
+            success: function (data) {
+                marker = JSON.stringify(this.url);
+                console.log(marker);
+            },
         })
         .then(function (response) {
             if (response.results != null) {
