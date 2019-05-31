@@ -6,8 +6,7 @@ $(document).ready(function () {
         $("#game-search").val("");
     };
     var videoSearch = function (term) {
-        var ytLink = "https://www.youtube.com/watch?v=";
-        var vidId = response.items.id.videoId;
+
         var apiKey = "AIzaSyDS5gScl0gc9l5iiew-r_2n8CZXPeNBM-Y";
         var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + apiKey + "";
 
@@ -17,9 +16,17 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(queryUrl)
             console.log(response);
-            var ytvideo = ytLink + vidId;
-            console.log(ytvideo);
-            $('tbody').append(ytvideo);
+            for (var i = 0; i < 4; i++) {
+                var ytLink = "https://www.youtube.com/embed/";
+                var vidId = response.items[i].id.videoId;
+                var ytVideo = ytLink + vidId;
+                console.log(ytVideo);
+                var vidEmbed = $("<iframe>");
+                vidEmbed.attr("src", ytVideo);
+                $("#game-search-result").append(vidEmbed);
+            }
+
+
 
         })
     }
@@ -121,15 +128,32 @@ $(document).ready(function () {
                 };
             });
     }
-    $("#game-query").on("click", function () {
+    $("#game-query").on("click", function (event) {
+        event.preventDefault();
         $("#game-container").empty();
+        // change to sidebar when created
+        $("#game-search-result").empty();
+
         if ($("#game-search").val() != "") {
             var a = $("#game-search").val();
             searchGame(a);
-            videoSearch();
+            videoSearch(a);
             newSearch();
         };
     });
+    /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+    function openNav() {
+        $("#mySidebar").css("width", 250);
+        $("#main").css("margin-left", 250);;
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+        $("#mySidebar").css("width", 0);
+        $("#main").css("margin-left", 0);
+    }
+    openNav();
+    closeNav();
 });
 
 
