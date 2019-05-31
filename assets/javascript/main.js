@@ -118,11 +118,14 @@ $(document).ready(function () {
             imgDiv.addClass("col-md-2");
             var image = $("<img>");
             image.attr("src", response.top[i].game.box.medium);
+            // image.attr(twitchLink);
             console.log(response.top[i].game.box.medium);
             console.log(response.top[i].game.localized_name);
             imgDiv.append(image);
             imgDiv.append(viewCount);
             $("#twitch-container").append(imgDiv);
+            var urlSlug = encodeURI(response.top[i].game.localized_name)
+            $(image).wrap(`<a target="_blank" rel="noopener noreferrer" href=http://www.twitch.tv/directory/game/${urlSlug}></a>`);
         }
         console.log(response.top[i]);
     });
