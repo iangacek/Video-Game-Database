@@ -8,7 +8,7 @@
     <title>Game Database Search</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="assets/javascript/main.js"></script>
 </head>
@@ -17,6 +17,14 @@
 
     <div class="container">
         <br>
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="videos"></div>
+        </div>
+
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">&#9776; Videos</button>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <!-- Game search box -->
@@ -27,13 +35,12 @@
                 </form>
             </div>
         </div>
-        <!-- Search result will populate here -->
-        <div class="row">
-            <div class="col-md-3" id="game-search-result">
-            </div>
+        <!-- Twitch.TV games populate here -->
+        <h3 class="twitchHeader">Current Top Games on Twitch.TV</h3>
+        <div class="row" id="twitch-container">
         </div>
         <br>
-        <!-- Game information populates here -->
+        <!-- Search result will populate here -->
         <div class="row" id="game-container">
         </div>
     </div>

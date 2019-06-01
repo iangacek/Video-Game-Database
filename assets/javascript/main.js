@@ -4,8 +4,30 @@ $(document).ready(function () {
         $("#game-search").val("");
     };
 
-    var searchGame = function (term) {
+    // YouTube Video Search
+    var videoSearch = function (term) {
 
+        var apiKey = "AIzaSyDS5gScl0gc9l5iiew-r_2n8CZXPeNBM-Y";
+        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + apiKey + "";
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(queryUrl)
+            console.log(response);
+            for (var i = 0; i < 8; i++) {
+                var ytLink = "https://www.youtube.com/embed/";
+                var vidId = response.items[i].id.videoId;
+                var ytVideo = ytLink + vidId;
+                console.log(ytVideo);
+                var vidEmbed = $("<iframe>");
+                vidEmbed.attr("src", ytVideo);
+                $(".videos").append(vidEmbed);
+            }
+        })
+    }
+    var searchGame = function (term) {
         var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
         var queryURL = "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + term + "&resources=game";
         //https://www.giantbomb.com/api/search/?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&format=json&query="metroid prime"&resources=game/
@@ -32,6 +54,7 @@ $(document).ready(function () {
                 console.log("AJAX call ");
                 if (response.results != null) {
                     //console.log(response.results);
+
                     for (var i = 0; i < response.results.length; i++) {
                         //this div containts everything
                         //
@@ -84,7 +107,10 @@ $(document).ready(function () {
                         var tr3 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
-                        info1.text("img");
+                       
+
+                        info1.text("Game Art");
+
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var image = $("<img>")
@@ -103,21 +129,66 @@ $(document).ready(function () {
                 };
             });
 
-
-
-
-
-        return false;
     }
-    $("#game-query").on("click", function () {
-        $("#game-container").empty();
-        if ($("#game-search").val() != "") {
-            var a = $("#game-search").val();
-            searchGame(a);
-            newSearch();
-        };
-        return false;
+    $("#game-query").on("click", function (event) {
+        event.preventDefault();
+        $("#game-query").on("click", function () {
+            $("#game-container").empty();
+
+            $(".videos").empty();
+
+            if ($("#game-search").val() != "") {
+                var a = $("#game-search").val();
+                searchGame(a);
+                videoSearch(a);
+                newSearch();
+            };
+        });
+    });
+
+    // Twitch API call for top 6 games
+    $.ajax({
+        url: "https://api.twitch.tv/kraken/games/top",
+        method: "GET",
+        headers: {
+            "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
+        },
+    }).then(function (response) {
+        for (var i = 0; i < 6; i++) {
+            var imgDiv = $("<div>");
+            var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
+            imgDiv.addClass("col-md-2");
+            var image = $("<img>");
+            image.attr("src", response.top[i].game.box.medium);
+            console.log(response.top[i].game.box.medium);
+            console.log(response.top[i].game.localized_name);
+            imgDiv.append(image);
+            imgDiv.append(viewCount);
+            $("#twitch-container").append(imgDiv);
+            var urlSlug = encodeURI(response.top[i].game.localized_name)
+            $(image).wrap(`<a target="_blank" rel="noopener noreferrer" href=http://www.twitch.tv/directory/game/${urlSlug}></a>`);
+        }
+        console.log(response.top[i]);
     });
 });
+var open = false;
+function decide() {
+    if (open == true) {
+        closeNav();
+    } else {
+        openNav();
+    }
+}
+decide();
 
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    $("#mySidebar").css("width", 0);
+    $("#main").css("margin-left", 0);
+}
 
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+    $("#mySidebar").css("width", 380);
+    $("#main").css("margin-left", 380);
+}
