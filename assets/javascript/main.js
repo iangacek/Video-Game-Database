@@ -1,10 +1,9 @@
 $(document).ready(function () {
-    var search = null;
     var newSearch = function () {
-        event.preventDefault();
         search = $("#game-search").val().trim();
         $("#game-search").val("");
     };
+
     // YouTube Video Search
     var videoSearch = function (term) {
 
@@ -30,25 +29,32 @@ $(document).ready(function () {
     }
     var searchGame = function (term) {
         var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
-        var queryURL = "https://www.giantbomb.com/api/search?api_key=" + key + "&format=json&query=" + term + "&resources=game";
-        console.log(queryURL);
-        console.log("test");
-
-        // DO NOT TOUCH - Giantbomb Search Function
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + term + "&resources=game";
+        //https://www.giantbomb.com/api/search/?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&format=json&query="metroid prime"&resources=game/
+        console.log("TARGET: "+"https://www.giantbomb.com/api/search/?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&format=json&query=" + term + "&resources=game");
+        console.log("With PROXY: "+queryURL);
+        //var queryURL = "https://www.giantbomb.com/api/search?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&field_list=name%2Cdeck%2Coriginal_release_date%2Cimage&query=war&resources=game/"
+        // console.log(queryURL);
+        // console.log("test");
+        var marker;
         $.ajax({
-            url: "https://api.giantbomb.com/search/",
-            dataType: "jsonp",
-            jsonp: "json_callback",
-            data: {
-                api_key: "52e79fca4d325c1ee085a289f1703202d6089c8e",
-                query: term,
-                format: "jsonp",
-                resources: "game",
+            url: queryURL,
+            type: 'GET',
+            dataType: "json",
+            headers:{
+                "Access-Control-Allow-Origin": "*",
+                "x-requested-with": "xhr",
+                //"format": "json",
             },
-        })
-            .then(function (response) {
+            success: function (response) {
+                marker = JSON.stringify(this.url);
+                console.log("AJAX Success: "+marker);
+            },
+        }).then(function (response) {
+                console.log("AJAX call ");
                 if (response.results != null) {
-                    console.log(response.results[0]);
+                    //console.log(response.results);
+
                     for (var i = 0; i < response.results.length; i++) {
                         //this div containts everything
                         //
@@ -101,8 +107,10 @@ $(document).ready(function () {
                         var tr3 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
-                        info1.text("img");
+                       
+
                         info1.text("Game Art");
+
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var image = $("<img>")
@@ -120,6 +128,7 @@ $(document).ready(function () {
                     }
                 };
             });
+
     }
     $("#game-query").on("click", function (event) {
         event.preventDefault();
