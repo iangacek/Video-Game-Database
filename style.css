@@ -17,6 +17,11 @@ body {
     border-color: #212529;
 }
 
+.twitchHeader {
+    text-align: center;
+    margin-top: 4px;
+}
+
 input:invalid {
     border: 2px solid red;
   }

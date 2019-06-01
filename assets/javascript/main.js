@@ -36,6 +36,7 @@ $(document).ready(function () {
         console.log(queryURL);
         console.log("test");
 
+        // DO NOT TOUCH - Giantbomb Search Function
         $.ajax({
             url: "https://api.giantbomb.com/search/",
             dataType: "jsonp",
@@ -108,6 +109,7 @@ $(document).ready(function () {
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
                         info1.text("img");
+                        info1.text("Game Art");
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var image = $("<img>")
@@ -128,6 +130,34 @@ $(document).ready(function () {
     }
     $("#game-query").on("click", function (event) {
         event.preventDefault();
+
+    //Twitch API call for top games
+    $.ajax({
+        url: "https://api.twitch.tv/kraken/games/top",
+        method: "GET",
+        headers: {
+            "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
+        },
+    }).then(function (response) {
+        for (var i = 0; i < 6; i++) {
+            var imgDiv = $("<div>");
+            var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
+            imgDiv.addClass("col-md-2");
+            var image = $("<img>");
+            image.attr("src", response.top[i].game.box.medium);
+            // image.attr(twitchLink);
+            console.log(response.top[i].game.box.medium);
+            console.log(response.top[i].game.localized_name);
+            imgDiv.append(image);
+            imgDiv.append(viewCount);
+            $("#twitch-container").append(imgDiv);
+            var urlSlug = encodeURI(response.top[i].game.localized_name)
+            $(image).wrap(`<a target="_blank" rel="noopener noreferrer" href=http://www.twitch.tv/directory/game/${urlSlug}></a>`);
+        }
+        console.log(response.top[i]);
+    });
+
+    $("#game-query").on("click", function () {
         $("#game-container").empty();
 
         $(".videos").empty();
