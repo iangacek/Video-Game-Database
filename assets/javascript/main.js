@@ -5,6 +5,29 @@ $(document).ready(function () {
         search = $("#game-search").val().trim();
         $("#game-search").val("");
     };
+    var videoSearch = function (term) {
+
+        var apiKey = "AIzaSyDS5gScl0gc9l5iiew-r_2n8CZXPeNBM-Y";
+        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + apiKey + "";
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(queryUrl)
+            console.log(response);
+            for (var i = 0; i < 8; i++) {
+                var ytLink = "https://www.youtube.com/embed/";
+                var vidId = response.items[i].id.videoId;
+                var ytVideo = ytLink + vidId;
+                console.log(ytVideo);
+                var vidEmbed = $("<iframe>");
+                vidEmbed.attr("src", ytVideo);
+                $(".videos").append(vidEmbed);
+            }
+
+        })
+    }
     var searchGame = function (term) {
         //need to change url
 
@@ -78,12 +101,14 @@ $(document).ready(function () {
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var date = response.results[i].original_release_date;
+                        date = date.split(' ')[0];
                         info2.text(date);
                         tr2.append(info1);
                         tr2.append(info2);
                         var tr3 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
+                        info1.text("img");
                         info1.text("Game Art");
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
@@ -103,6 +128,8 @@ $(document).ready(function () {
                 };
             });
     }
+    $("#game-query").on("click", function (event) {
+        event.preventDefault();
 
     //Twitch API call for top games
     $.ajax({
@@ -132,12 +159,40 @@ $(document).ready(function () {
 
     $("#game-query").on("click", function () {
         $("#game-container").empty();
+
+        $(".videos").empty();
+
         if ($("#game-search").val() != "") {
             var a = $("#game-search").val();
             searchGame(a);
+            videoSearch(a);
             newSearch();
         };
     });
+
+
 });
+var open = false;
+
+function decide() {
+    if (open == true) {
+        closeNav();
+    } else {
+        openNav();
+    }
+}
+decide();
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    $("#mySidebar").css("width", 0);
+    $("#main").css("margin-left", 0);
+}
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+    $("#mySidebar").css("width", 380);
+    $("#main").css("margin-left", 380);
+}
 
 
