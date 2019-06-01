@@ -29,6 +29,8 @@ $(document).ready(function () {
                 resources: "game",
             },
         })
+
+        
         .then(function (response) {
             if (response.results != null) {
                 console.log(response.results[0]);
