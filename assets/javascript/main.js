@@ -5,6 +5,7 @@ $(document).ready(function () {
         search = $("#game-search").val().trim();
         $("#game-search").val("");
     };
+    // YouTube Video Search
     var videoSearch = function (term) {
 
         var apiKey = "AIzaSyDS5gScl0gc9l5iiew-r_2n8CZXPeNBM-Y";
@@ -25,12 +26,9 @@ $(document).ready(function () {
                 vidEmbed.attr("src", ytVideo);
                 $(".videos").append(vidEmbed);
             }
-
         })
     }
     var searchGame = function (term) {
-        //need to change url
-
         var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
         var queryURL = "https://www.giantbomb.com/api/search?api_key=" + key + "&format=json&query=" + term + "&resources=game";
         console.log(queryURL);
@@ -45,11 +43,6 @@ $(document).ready(function () {
                 api_key: "52e79fca4d325c1ee085a289f1703202d6089c8e",
                 query: term,
                 format: "jsonp",
-                //we can change searched item here
-                //field_list: "name, deck",
-                //field_list: "deck",
-                //field_list: "original_release_date",
-                //field_list: "image",
                 resources: "game",
             },
         })
@@ -130,8 +123,21 @@ $(document).ready(function () {
     }
     $("#game-query").on("click", function (event) {
         event.preventDefault();
+        $("#game-query").on("click", function () {
+            $("#game-container").empty();
 
-    //Twitch API call for top games
+            $(".videos").empty();
+
+            if ($("#game-search").val() != "") {
+                var a = $("#game-search").val();
+                searchGame(a);
+                videoSearch(a);
+                newSearch();
+            };
+        });
+    });
+
+    // Twitch API call for top 6 games
     $.ajax({
         url: "https://api.twitch.tv/kraken/games/top",
         method: "GET",
@@ -145,7 +151,6 @@ $(document).ready(function () {
             imgDiv.addClass("col-md-2");
             var image = $("<img>");
             image.attr("src", response.top[i].game.box.medium);
-            // image.attr(twitchLink);
             console.log(response.top[i].game.box.medium);
             console.log(response.top[i].game.localized_name);
             imgDiv.append(image);
@@ -156,24 +161,8 @@ $(document).ready(function () {
         }
         console.log(response.top[i]);
     });
-
-    $("#game-query").on("click", function () {
-        $("#game-container").empty();
-
-        $(".videos").empty();
-
-        if ($("#game-search").val() != "") {
-            var a = $("#game-search").val();
-            searchGame(a);
-            videoSearch(a);
-            newSearch();
-        };
-    });
-
-
 });
 var open = false;
-
 function decide() {
     if (open == true) {
         closeNav();
@@ -194,5 +183,3 @@ function openNav() {
     $("#mySidebar").css("width", 380);
     $("#main").css("margin-left", 380);
 }
-
-
