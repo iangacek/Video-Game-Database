@@ -16,17 +16,15 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(queryUrl)
             console.log(response);
-            for (var i = 0; i < 4; i++) {
+            for (var i = 0; i < 8; i++) {
                 var ytLink = "https://www.youtube.com/embed/";
                 var vidId = response.items[i].id.videoId;
                 var ytVideo = ytLink + vidId;
                 console.log(ytVideo);
                 var vidEmbed = $("<iframe>");
                 vidEmbed.attr("src", ytVideo);
-                $("#game-search-result").append(vidEmbed);
+                $(".videos").append(vidEmbed);
             }
-
-
 
         })
     }
@@ -131,8 +129,8 @@ $(document).ready(function () {
     $("#game-query").on("click", function (event) {
         event.preventDefault();
         $("#game-container").empty();
-        // change to sidebar when created
-        $("#game-search-result").empty();
+
+        $(".videos").empty();
 
         if ($("#game-search").val() != "") {
             var a = $("#game-search").val();
@@ -141,19 +139,30 @@ $(document).ready(function () {
             newSearch();
         };
     });
-    /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-    function openNav() {
-        $("#mySidebar").css("width", 250);
-        $("#main").css("margin-left", 250);;
-    }
 
-    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-    function closeNav() {
-        $("#mySidebar").css("width", 0);
-        $("#main").css("margin-left", 0);
-    }
-    openNav();
-    closeNav();
+
 });
+var open = false;
+
+function decide() {
+    if (open == true) {
+        closeNav();
+    } else {
+        openNav();
+    }
+}
+decide();
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    $("#mySidebar").css("width", 0);
+    $("#main").css("margin-left", 0);
+}
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+    $("#mySidebar").css("width", 380);
+    $("#main").css("margin-left", 380);
+}
 
 

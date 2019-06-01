@@ -18,6 +18,14 @@
 
     <div class="container">
         <br>
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="videos"></div>
+        </div>
+
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">&#9776; Videos</button>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <!-- Game search box -->
@@ -38,20 +46,6 @@
         <div class="row" id="game-container">
         </div>
     </div>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </div>
-
-    <div id="main">
-        <button class="openbtn" onclick="openNav()">&#9776; Toggle Sidebar</button>
-        <h2>Collapsed Sidebar</h2>
-        <p>Content...</p>
-    </div>
-
 </body>
 
 </html>

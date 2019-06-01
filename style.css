@@ -24,15 +24,19 @@ input:invalid {
   input:valid {
     border: 2px solid black;
   }
+  .videos {
+      padding: 20px;
+  }
   .sidebar {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
+    bottom: 0;
     left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
+    background-color: #343A40; /* Black*/
+    overflow-x: scroll; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
   }
@@ -65,10 +69,12 @@ input:invalid {
   .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background-color: #212529;
+    border-color: #212529;
     color: white;
     padding: 10px 15px;
-    border: none;
+    border: 2px solid black;
+
   }
   
   .openbtn:hover {
@@ -78,7 +84,7 @@ input:invalid {
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {
     transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20px;
+    padding: 20px,20px,20px,0;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
