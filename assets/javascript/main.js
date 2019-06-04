@@ -176,9 +176,11 @@ function decide() {
     if (open === true) {
         closeNav();
         open = false;
+        $("#main").css({ 'opacity' : 1 });
     } else {
         openNav();
         open = true;
+        $("#main").css({ 'opacity' : 0 });
     }
 }
 decide();
