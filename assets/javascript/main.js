@@ -173,10 +173,12 @@ $(document).ready(function () {
 });
 var open = false;
 function decide() {
-    if (open == true) {
+    if (open === true) {
         closeNav();
+        open = false;
     } else {
         openNav();
+        open = true;
     }
 }
 decide();
