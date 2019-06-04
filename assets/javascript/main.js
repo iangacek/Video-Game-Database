@@ -157,7 +157,7 @@ $(document).ready(function () {
         for (var i = 0; i < 6; i++) {
             var imgDiv = $("<div>");
             var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
-            imgDiv.addClass("col-md-2");
+            imgDiv.addClass("col-lg-2 col-md-3 col-sm-4 text-center");
             var image = $("<img>");
             image.attr("src", response.top[i].game.box.medium);
             console.log(response.top[i].game.box.medium);
