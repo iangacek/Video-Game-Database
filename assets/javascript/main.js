@@ -87,7 +87,7 @@ $(document).ready(function () {
                         var tr1 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
-                        info1.text("Abstract");
+                        info1.text("Synopsis");
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         info2.text(response.results[i].deck);
