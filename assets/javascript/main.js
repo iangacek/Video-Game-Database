@@ -27,6 +27,9 @@ $(document).ready(function () {
             }
         })
     }
+
+    // Giantbomb video game search function and AJAX call
+
     var searchGame = function (term) {
         var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
         var queryURL = "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + term + "&resources=game";
@@ -147,6 +150,7 @@ $(document).ready(function () {
     });
 
     // Twitch API call for top 6 games
+
     $.ajax({
         url: "https://api.twitch.tv/helix/games/top",
         type: "GET",
@@ -170,6 +174,9 @@ $(document).ready(function () {
         }
     });
 });
+
+// Slide-in Videos bar
+
 var open = false;
 function decide() {
     if (open === true) {
