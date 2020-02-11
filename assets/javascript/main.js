@@ -118,7 +118,7 @@ $(document).ready(function () {
                         info2.attr("scope", "row");
                         var image = $("<img>")
                         image.attr("src", response.results[i].image.original_url);
-                        image.css("max-width", "100%");
+                        image.css("max-width", 350);
                         info2.append(image);
                         tr3.append(info1);
                         tr3.append(info2);
