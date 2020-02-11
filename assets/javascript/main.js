@@ -7,8 +7,8 @@ $(document).ready(function () {
     // YouTube Video Search
     var videoSearch = function (term) {
 
-        var YT_KEY = config.YT_KEY;
-        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + YT_KEY + "";
+        var API_KEY = "AIzaSyDlNbH0xUaY2sCVgTsyxzf4lq11nGKaQeM";
+        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + API_KEY + "";
 
         $.ajax({
             url: queryUrl,
@@ -28,9 +28,14 @@ $(document).ready(function () {
         })
     }
     var searchGame = function (term) {
-        var GB_KEY = config.GB_KEY;
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=" + GB_KEY + "&format=json&query=" + term + "&resources=game";
+        var key = "52e79fca4d325c1ee085a289f1703202d6089c8e";
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + term + "&resources=game";
+        //https://www.giantbomb.com/api/search/?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&format=json&query="metroid prime"&resources=game/
+        console.log("TARGET: "+"https://www.giantbomb.com/api/search/?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&format=json&query=" + term + "&resources=game");
         console.log("With PROXY: "+queryURL);
+        //var queryURL = "https://www.giantbomb.com/api/search?api_key=52e79fca4d325c1ee085a289f1703202d6089c8e&field_list=name%2Cdeck%2Coriginal_release_date%2Cimage&query=war&resources=game/"
+        // console.log(queryURL);
+        // console.log("test");
         var marker;
         $.ajax({
             url: queryURL,
@@ -39,6 +44,7 @@ $(document).ready(function () {
             headers:{
                 "Access-Control-Allow-Origin": "*",
                 "x-requested-with": "xhr",
+                //"format": "json",
             },
             success: function (response) {
                 marker = JSON.stringify(this.url);
@@ -141,12 +147,10 @@ $(document).ready(function () {
     });
 
     // Twitch API call for top 6 games
-    var TTV_KEY = config.TTV_KEY;
-
     $.ajax({
         url: "https://api.twitch.tv/helix/games/top",
         type: "GET",
-        beforeSend: function(xhr){xhr.setRequestHeader('Client-ID', TTV_KEY);},
+        beforeSend: function(xhr){xhr.setRequestHeader('Client-ID', 'r0yk5k085hbrji18816bmqc3562rh3');},
 
     }).then(function (response) {
         for (var i = 0; i < 6; i++) {
