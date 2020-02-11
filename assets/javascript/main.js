@@ -7,8 +7,8 @@ $(document).ready(function () {
     // YouTube Video Search
     var videoSearch = function (term) {
 
-        var apiKey = "AIzaSyDS5gScl0gc9l5iiew-r_2n8CZXPeNBM-Y";
-        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + apiKey + "";
+        var API_KEY = "AIzaSyDlNbH0xUaY2sCVgTsyxzf4lq11nGKaQeM";
+        var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + API_KEY + "";
 
         $.ajax({
             url: queryUrl,
@@ -155,21 +155,19 @@ $(document).ready(function () {
     }).then(function (response) {
         for (var i = 0; i < 6; i++) {
             var imgDiv = $("<div>");
-            // var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
             imgDiv.addClass("col-lg-2 col-md-3 col-sm-4 text-center");
             var image = $("<img>");
             var gameName = $("<p>").text(response.data[i].name);
-            image.attr("src", response.data[i].box_art_url);
+            image.attr("src", response.data[i].box_art_url.replace('{width}', '173').replace('{height}', '230'));
             gameName.attr("src", response.data[i].name);
-            console.log(response.data[i].name);
             console.log(response.data[i].box_art_url);
+            console.log(response.data[i].name);
             imgDiv.append(image);
             imgDiv.append(gameName);
             $("#twitch-container").append(imgDiv);
             var urlSlug = encodeURI(response.data[i].name)
             $(image).wrap(`<a target="_blank" rel="noopener noreferrer" href=http://www.twitch.tv/directory/game/${urlSlug}></a>`);
         }
-        // console.log(response.data[i]);
     });
 });
 var open = false;
