@@ -148,27 +148,28 @@ $(document).ready(function () {
 
     // Twitch API call for top 6 games
     $.ajax({
-        url: "https://api.twitch.tv/kraken/games/top",
-        method: "GET",
-        headers: {
-            "Client-ID": "r0yk5k085hbrji18816bmqc3562rh3"
-        },
+        url: "https://api.twitch.tv/helix/games/top",
+        type: "GET",
+        beforeSend: function(xhr){xhr.setRequestHeader('Client-ID', 'r0yk5k085hbrji18816bmqc3562rh3');},
+
     }).then(function (response) {
         for (var i = 0; i < 6; i++) {
             var imgDiv = $("<div>");
-            var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
+            // var viewCount = $("<p>").text("Viewers: " + response.top[i].viewers);
             imgDiv.addClass("col-lg-2 col-md-3 col-sm-4 text-center");
             var image = $("<img>");
-            image.attr("src", response.top[i].game.box.medium);
-            console.log(response.top[i].game.box.medium);
-            console.log(response.top[i].game.localized_name);
+            var gameName = $("<p>").text(response.data[i].name);
+            image.attr("src", response.data[i].box_art_url);
+            gameName.attr("src", response.data[i].name);
+            console.log(response.data[i].name);
+            console.log(response.data[i].box_art_url);
             imgDiv.append(image);
-            imgDiv.append(viewCount);
+            imgDiv.append(gameName);
             $("#twitch-container").append(imgDiv);
-            var urlSlug = encodeURI(response.top[i].game.localized_name)
+            var urlSlug = encodeURI(response.data[i].name)
             $(image).wrap(`<a target="_blank" rel="noopener noreferrer" href=http://www.twitch.tv/directory/game/${urlSlug}></a>`);
         }
-        console.log(response.top[i]);
+        // console.log(response.data[i]);
     });
 });
 var open = false;
