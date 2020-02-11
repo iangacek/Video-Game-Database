@@ -7,7 +7,7 @@ $(document).ready(function () {
     // YouTube Video Search
     var videoSearch = function (term) {
 
-        var API_KEY = "AIzaSyDlNbH0xUaY2sCVgTsyxzf4lq11nGKaQeM";
+        var API_KEY = "AIzaSyA8wla9cIXKNCLjO6-djUJQZhM5ZfeGSaM";
         var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + term + "&key=" + API_KEY + "";
 
         $.ajax({
