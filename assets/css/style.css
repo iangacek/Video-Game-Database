@@ -101,3 +101,9 @@ input:invalid {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
   }
+
+  /* Converts table text to white in color */
+
+  tr {
+    color: white;
+  }
