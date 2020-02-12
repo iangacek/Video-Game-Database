@@ -65,7 +65,7 @@ $(document).ready(function () {
                         //this div containts everything
                         //
                         var itemDiv = $("<div>");
-                        itemDiv.addClass("col-md-6");
+                        itemDiv.addClass("col-md-4");
                         //
                         var itemResTable = $("<div>");
                         itemResTable.addClass("table-responsive");
@@ -89,6 +89,9 @@ $(document).ready(function () {
                         tr0.append(info2);
                         itemHead.append(tr0);
                         itemTable.append(itemHead);
+
+                        // Displays the game's synopsis from the Giantbomb API
+
                         var itemBody = $("<tbody>");
                         var tr1 = $("<tr>");
                         var info1 = $("<th>");
@@ -97,12 +100,16 @@ $(document).ready(function () {
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         info2.text(response.results[i].deck);
+                        info2.css("font-size", 14);
                         tr1.append(info1);
                         tr1.append(info2);
                         var tr2 = $("<tr>");
                         var info1 = $("<th>");
-                        info1.attr("scope", "row");
-                        info1.text("Release Date");
+
+                        // This contained the code to display the release date, but giantbomb no longer provides that in their API response
+
+                        // info1.attr("scope", "row");
+                        // info1.text("Release Date");
                         // var info2 = $("<th>");
                         // info2.attr("scope", "row");
                         // var date = response.results[i].original_release_date;
@@ -110,18 +117,18 @@ $(document).ready(function () {
                         // info2.text(date);
                         // tr2.append(info1);
                         // tr2.append(info2);
+
+                        // Row to display game art from Giantbomb API
+
                         var tr3 = $("<tr>");
                         var info1 = $("<th>");
                         info1.attr("scope", "row");
-                       
-
                         info1.text("Game Art");
-
                         var info2 = $("<th>");
                         info2.attr("scope", "row");
                         var image = $("<img>")
                         image.attr("src", response.results[i].image.original_url);
-                        image.css("max-width", 350);
+                        image.css("max-width", "80%");
                         info2.append(image);
                         tr3.append(info1);
                         tr3.append(info2);

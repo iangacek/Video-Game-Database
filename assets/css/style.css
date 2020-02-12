@@ -110,3 +110,7 @@ input:valid {
 tr {
   color: white;
 }
+
+#descText {
+  font-size: 12px;
+}
