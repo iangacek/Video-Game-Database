@@ -16,14 +16,17 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(queryUrl)
             console.log(response);
-            for (var i = 0; i < 8; i++) {
+            for (var i = 0; i < 6; i++) {
                 var ytLink = "https://www.youtube.com/embed/";
                 var vidId = response.items[i].id.videoId;
                 var ytVideo = ytLink + vidId;
+                var ytName = $("<p>").text(response.items[i].snippet.title);
                 console.log(ytVideo);
                 var vidEmbed = $("<iframe>");
                 vidEmbed.attr("src", ytVideo);
+                $(".videos").append(ytName);
                 $(".videos").append(vidEmbed);
+                $(".videos").append("<br><br>");
             }
         })
     }
