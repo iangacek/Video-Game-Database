@@ -164,7 +164,7 @@ $(document).ready(function () {
     $.ajax({
         url: "https://api.twitch.tv/helix/games/top",
         type: "GET",
-        beforeSend: function(xhr){xhr.setRequestHeader('Client-ID', 'r0yk5k085hbrji18816bmqc3562rh3');},
+        beforeSend: function(xhr){xhr.setRequestHeader('Client-ID', 'zuhrqbov2pygqwqde6nk92m38786ms');},
 
     }).then(function (response) {
         for (var i = 0; i < 6; i++) {
